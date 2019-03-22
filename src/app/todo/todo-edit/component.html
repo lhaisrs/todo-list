@@ -1,0 +1,37 @@
+<span *ngIf="loading$ | async">Loading...</span>
+<div class="card" *ngIf="!edit">
+  <div class="card-body">
+    <h5 class="card-title">Creating new todo</h5>
+    <form [formGroup]="todoEditForm" (ngSubmit)="addToDo()">
+      <div class="form-group">
+        <label>Title: </label>
+        <input type="text" class="form-control" placeholder="Put what you need to do here" formControlName="title"
+          name="title">
+      </div>
+      <div class="form-group custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="customSwitch1" formControlName="completed"
+          name="completed">
+        <label class="custom-control-label" for="customSwitch1">Completed/Incompleted</label>
+      </div>
+      <button type="submit" class="btn btn-dark">Create</button>
+    </form>
+  </div>
+</div>
+<div class="card" *ngIf="edit">
+  <div class="card-body" *ngIf="todo$ | async; let todo">
+    <h5 class="card-title">Editing <b>{{todo.title}}</b></h5>
+    <form [formGroup]="todoEditForm" (ngSubmit)="updateTodo()">
+      <div class="form-group">
+        <label>Title: </label>
+        <input type="text" class="form-control" placeholder="Put what you need to do here" formControlName="title"
+          name="title">
+      </div>
+      <div class="form-group custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="customSwitch1" formControlName="completed"
+          name="completed">
+        <label class="custom-control-label" for="customSwitch1">Completed/Incompleted</label>
+      </div>
+      <button type="submit" class="btn btn-dark">Edit</button>
+    </form>
+  </div>
+</div>

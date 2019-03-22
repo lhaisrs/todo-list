@@ -1,0 +1,25 @@
+<span *ngIf="loading$ | async">Loading...</span>
+<div class="card">
+  <div class="card-body">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="row" *ngIf="todo$ | async; let todo">
+            <h4 class="card-title">{{todo.title}}</h4>
+          </div>
+          <div class="row" *ngIf="todo$ | async; let todo">
+            <p>Status: </p>
+            <span *ngIf="todo.completed">Completed</span>
+            <span *ngIf="!todo.completed">Incompleted</span>
+          </div>
+        </div>
+        <div class="col" *ngIf="todo$ | async; let todo">
+          <button type="button" class="btn btn-dark btn-edit" (click)="onEdit(todo)"><i
+              class="fas fa-edit"></i></button>
+          <button type="button" class="btn btn-dark btn-delete" (click)="onDelete(todo)"><i
+              class="fas fa-trash-alt"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
